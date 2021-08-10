@@ -4,7 +4,7 @@ var app = express();
 
 const absoluteStatic = path.resolve(__dirname, "/public");
 
-app.use(express.static("./public"));
+app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
   const absolutePath = path.resolve(__dirname, "./views/index.html");
