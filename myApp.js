@@ -7,6 +7,8 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
-app.use(express.static("./public"));
+const absoluteStatic = path.resolve(__dirname, "./public");
+
+app.use(express.static(absoluteStatic));
 
 module.exports = app;
