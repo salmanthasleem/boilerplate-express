@@ -1,41 +1,10 @@
-var express = require('express');
+var express = require("express");
+const path = require("path");
 var app = express();
 
+app.get("/", (req, res) => {
+  const absolutePath = path.resolve(__dirname, "./views/index.html");
+  res.sendFile(absolutePath);
+});
 
-app.get('/',(req,res)=>{
-    res.send('Hello Express')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+module.exports = app;
