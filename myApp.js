@@ -6,6 +6,11 @@ const logger = (req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 };
+const timeLogger = (req, res, next) => {
+  let time = new Date().toLocaleTimeString();
+  req.time = time;
+  next();
+};
 const absoluteAsset = path.resolve(__dirname, "./public");
 app.use("/public", express.static(absoluteAsset));
 
@@ -20,6 +25,10 @@ app.get("/json", logger, (req, res) => {
   res.json({
     message,
   });
+});
+
+app.get("/now", timeLogger, (req, res) => {
+  res.json({ time: req.time });
 });
 
 module.exports = app;
