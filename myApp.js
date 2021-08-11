@@ -1,6 +1,10 @@
 var express = require("express");
 const path = require("path");
 var app = express();
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser());
 
 const logger = (req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
