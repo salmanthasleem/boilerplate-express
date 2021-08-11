@@ -7,8 +7,7 @@ const logger = (req, res, next) => {
   next();
 };
 const timeLogger = (req, res, next) => {
-  let time = new Date().toLocaleTimeString();
-  req.time = time;
+  req.time = new Date().toString();
   next();
 };
 const absoluteAsset = path.resolve(__dirname, "./public");
