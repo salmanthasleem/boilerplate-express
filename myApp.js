@@ -2,6 +2,10 @@ var express = require("express");
 const path = require("path");
 var app = express();
 
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+};
 const absoluteAsset = path.resolve(__dirname, "./public");
 app.use("/public", express.static(absoluteAsset));
 
@@ -10,7 +14,7 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
-app.get("/json", (req, res) => {
+app.get("/json", logger, (req, res) => {
   const message =
     process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json";
   res.json({
